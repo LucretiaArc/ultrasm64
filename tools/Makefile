@@ -51,7 +51,7 @@ patch_elf_32bit_SOURCES := patch_elf_32bit.c
 
 aifc_decode_SOURCES := aifc_decode.c
 
-aiff_extract_codebook: $(LIBAUDIOFILE)
+aiff_extract_codebook$(EXT): $(LIBAUDIOFILE)
 aiff_extract_codebook_SOURCES := aiff_extract_codebook.c sdk-tools/tabledesign/codebook.c sdk-tools/tabledesign/estimate.c sdk-tools/tabledesign/print.c sdk-tools/tabledesign/tabledesign.c
 aiff_extract_codebook_CFLAGS  := -DEXTRACT_CODEBOOK -Iaudiofile -Wno-uninitialized
 aiff_extract_codebook_LDFLAGS := -Laudiofile -laudiofile -lstdc++
@@ -82,7 +82,7 @@ all: all-except-recomp
 
 clean:
 	$(RM) $(ALL_PROGRAMS)
-	$(MAKE) -C audiofile clean
+	"$(MAKE)" -C audiofile clean
 
 define COMPILE
 $(1)$$(EXT): $($1_SOURCES)
@@ -92,6 +92,6 @@ endef
 $(foreach p,$(BUILD_PROGRAMS),$(eval $(call COMPILE,$(p))))
 
 $(LIBAUDIOFILE):
-	@$(MAKE) -C audiofile
+	@"$(MAKE)" -C audiofile
 
 .PHONY: all all-except-recomp clean default
