@@ -140,7 +140,7 @@ SECTIONS
 #else
       *libultra_rom.a:*.o(.text);
 #endif
-      */libnustd.a:*.o(.text);
+      *libnustd.a:*.o(.text);
       *libgcc.a:*.o(.text);
       */librtc.a:*.o(.text);
       */libz.a:*.o(.text);
